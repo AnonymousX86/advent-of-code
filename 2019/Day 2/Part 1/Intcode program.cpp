@@ -15,7 +15,7 @@ int main()
     // Working on files is easier in Python...
     //
     // Input data
-    int data[] =
+    long data[] =
         {
             1,
             0,
@@ -141,15 +141,36 @@ int main()
     //
     typedef unsigned short small;
 
+    // Change this value for:
+    // true - getting final answer or;
+    // false - from origin input
+
+    bool replace = true;
+
+    if (replace)
+    {
+        data[1] = 12;
+        data[2] = 2;
+    };
+
+    long data_copy[(sizeof(data) / sizeof(*data))];
+
+    for (small i = 0; i < (sizeof(data) / sizeof(*data)); i++)
+    {
+        data_copy[i] = data[i];
+        // Not sure how to copy this by a single function
+    };
+
     // Not sure about it, but it works...
     // sizeof(data) / sizeof(*data)
 
     for (small i = 0; i < (sizeof(data) / sizeof(*data)); i++)
     {
-        int result = 0;
+        long result = 0;
 
+        std::cout << "\n==========\n";
         printf(" Pos:   %d\n", i);
-        printf("  Value: %d\n", data[i]);
+        printf(" Value: %d\n", data[i]);
 
         switch (data[i])
         {
@@ -177,6 +198,8 @@ int main()
 
             // Stroing data to next intiger
             data[data[i + 3]] = result;
+            printf("  Result:    %d\n", result);
+            printf("  Saved to: [%d]\n", data[i + 3]);
 
             break;
 
@@ -199,6 +222,8 @@ int main()
             };
 
             data[data[i + 3]] = result;
+            printf("  Result:    %d\n", result);
+            printf("  Saved to: [%d]\n", data[i + 3]);
 
             break;
 
@@ -218,15 +243,45 @@ int main()
             std::cout << " Nothing to do\n";
             break;
         }; /* switch */
-    };     /* for */
 
-    std::cout << "\n\n==========Final=====\n\n";
+        // I think this swicth function could be made
+        // more simple, but I'm not sure about it.
+        // A lot of code is in 'case 1` and 'case 2'
+
+    }; /* for */
+
+    // Starting data
+    std::cout << "\n\n==========Starting==========\n\n";
+    for (small i = 0; i < (sizeof(data_copy) / sizeof(*data_copy)); i++)
+    {
+        printf("%d, ", data_copy[i]);
+    };
+
+    // Final data
+    std::cout << "\n\n==========Final==========\n\n";
     for (small i = 0; i < (sizeof(data) / sizeof(*data)); i++)
     {
         printf("%d, ", data[i]);
     };
 
+    // What was changed will be visible here
+
     std::cout << "\n\n";
+    system("pause");
+
+    // This is code is optiopnal
+    std::cout << "\n ==========Seek intigers==========\n";
+    std::cout << " Now you will be able to seek specific intigers\n";
+    std::cout << " Press 'Ctrl + C' to exit\n\n";
+    small index = 0;
+    while (true)
+    {
+        std::cout << " Provide index: ";
+        std::cin >> index;
+        printf(" Starting value: %d\n", data[index]);
+        printf(" Final value:    %d\n\n", data_copy[index]);
+    };
+
     system("pause");
     return 0;
 }; /* main */
