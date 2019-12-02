@@ -1,18 +1,6 @@
 #include <iostream>
 #include <cstdio> /* printf */
 
-void tryNum(int noun, int verb)
-{
-    const int lookingFor = 19690720;
-    bool found = false;
-    if ((100 * noun + verb) == lookingFor)
-    {
-        std::cout << "== Found it! ==\n\n";
-        system("pause");
-        return;
-    };
-}
-
 int main()
 {
     std::cout << " ==========INFO==========\n"
@@ -154,10 +142,15 @@ int main()
         max = 99,
         lookingFor = 19690720;
 
-    for (small noun = min; noun <= max; noun++)
+    for (long noun = min; noun <= max; noun++)
     {
+        if (data[0] == lookingFor)
+        {
+            std::cout << " Found it!\n";
+            system("pause;");
+        };
         data[1] = noun;
-        for (small verb = min; verb <= max; verb++)
+        for (long verb = min; verb <= max; verb++)
         {
             data[2] = verb;
 
@@ -178,8 +171,8 @@ int main()
                         printf("  [%d]: %d\n", data[i + j], data[data[i + j]]);
                         result += data[data[i + j]];
                     };
-                    data[data[i + 3]] = result;
                     printf("  Result:    %d\n", result);
+                    data[data[i + 3]] = result;
                     printf("  Saved to: [%d]\n", data[i + 3]);
                     break;
 
@@ -191,8 +184,8 @@ int main()
                         printf("  [%d]: %d\n", data[i + j], data[data[i + j]]);
                         result *= data[data[i + j]];
                     };
-                    data[data[i + 3]] = result;
                     printf("  Result:    %d\n", result);
+                    data[data[i + 3]] = result;
                     printf("  Saved to: [%d]\n", data[i + 3]);
                     break;
 
