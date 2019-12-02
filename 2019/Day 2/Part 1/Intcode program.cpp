@@ -164,7 +164,7 @@ int main()
     // Not sure about it, but it works...
     // sizeof(data) / sizeof(*data)
 
-    for (small i = 0; i < (sizeof(data) / sizeof(*data)); i++)
+    for (small i = 0; i < (sizeof(data) / sizeof(*data)); i += 4)
     {
         long result = 0;
 
