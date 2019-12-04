@@ -1,7 +1,5 @@
 #include <iostream>
 #include <cstdio> /* printf */
-#include <cmath>  /* pow */
-#include <string> /* stoi */
 
 const int password_size = 6;
 
